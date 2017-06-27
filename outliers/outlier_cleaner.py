@@ -14,7 +14,15 @@ def outlierCleaner(predictions, ages, net_worths):
     cleaned_data = []
 
     ### your code goes here
+    dataset_size=len(ages)
 
+    differences=[(m-n)**2 for m,n in zip(net_worths,predictions)]
+
+    for i in range(0,dataset_size):
+        cleaned_data.append((ages[i],net_worths[i],differences[i]))
     
-    return cleaned_data
+    cleaned_data.sort(key=lambda x:x[2])    
+
+    #print cleaned_data
+    return cleaned_data[:int(0.9*dataset_size)]
 
