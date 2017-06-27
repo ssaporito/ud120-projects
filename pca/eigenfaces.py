@@ -43,6 +43,8 @@ lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
 n_samples, h, w = lfw_people.images.shape
 np.random.seed(42)
 
+print "got here"
+
 # for machine learning we use the data directly (as relative pixel
 # position info is ignored by this model)
 X = lfw_people.data
@@ -57,7 +59,6 @@ print "Total dataset size:"
 print "n_samples: %d" % n_samples
 print "n_features: %d" % n_features
 print "n_classes: %d" % n_classes
-
 
 ###############################################################################
 # Split into a training and testing set
@@ -81,6 +82,7 @@ X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 print "done in %0.3fs" % (time() - t0)
 
+#print pca.explained_variance_ratio_
 
 ###############################################################################
 # Train a SVM classification model
